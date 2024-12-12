@@ -1,19 +1,20 @@
 import { useState } from "react";
 
 export default function Player() {
-  const [name,setName] = useState('')
-  const [submit,setSubmit] = useState(false);
+  const [player,setPlayer] = useState({name:'',submit: false})
   const handleChange = (e) => {
-    setName(e.target.value);
+    setPlayer((prev) => ({...prev,name: e.target.value}));
   }
   const handleClick = () => {
-    setSubmit(true);
-  }
+    if (!player.submit) {
+      setPlayer((prev) => ({ ...prev, submit: !prev.submit }));
+    }
+  };
   return (
     <section id="player">
-      <h2>Welcome {submit ? name : "Guest"}</h2>
+      <h2>Welcome {player.submit ? player.name : "Guest"}</h2>
       <p>
-        <input type="text" value={name} onChange={handleChange} />
+        <input type="text" value={player.name} onChange={handleChange} />
         <button onClick={handleClick}>Set Name</button>
       </p>
     </section>
