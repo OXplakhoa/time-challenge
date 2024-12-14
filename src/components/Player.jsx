@@ -3,11 +3,9 @@ import { useRef, useState } from "react";
 export default function Player() {
   const playerName = useRef();
   const [player, setPlayer] = useState({ name: null});
-  // const handleChange = (e) => {
-  //   setPlayer((prev) => ({ ...prev, name: e.target.value, submit: false }));
-  // };
   const handleClick = () => {
     setPlayer((prev) => ({...prev, name: playerName.current.value}))
+    playerName.current.value = '';
   };
   return (
     <section id="player">
